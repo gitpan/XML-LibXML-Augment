@@ -1,0 +1,38 @@
+---
+abstract: 'extend XML::LibXML::{Attr,Element,Document} on a per-namespace/element basis'
+author:
+  - 'Toby Inkster <tobyink@cpan.org>'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+  Test::More: 0.61
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
+distribution_type: module
+generated_by: 'Module::Install version 1.02'
+keywords: []
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+module_name: XML::LibXML::Augment
+name: XML-LibXML-Augment
+no_index:
+  directory:
+    - examples
+    - inc
+    - t
+    - xt
+requires:
+  Carp: 0
+  Class::Inspector: 0
+  Module::Runtime: 0
+  Scalar::Util: 0
+  XML::LibXML: 1.95
+  perl: 5.10.0
+  strict: 0
+  warnings: 0
+resources:
+  bugtracker: http://rt.cpan.org/Dist/Display.html?Queue=XML-LibXML-Augment
+  homepage: https://metacpan.org/release/XML-LibXML-Augment
+  license: http://dev.perl.org/licenses/
+version: 0.001
