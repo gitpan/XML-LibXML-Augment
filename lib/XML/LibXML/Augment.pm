@@ -2,8 +2,11 @@ package XML::LibXML::Augment;
 
 use 5.010;
 use strict;
+use warnings;
+
 use Carp qw//;
 use Class::Inspector;
+use match::simple qw/match/;
 use Module::Runtime qw/module_notional_filename/;
 use Scalar::Util qw/blessed/;
 use XML::LibXML 1.95 qw/:libxml/;
@@ -13,17 +16,36 @@ my %Delegates;
 BEGIN
 {
 	$XML::LibXML::Augment::AUTHORITY = 'cpan:TOBYINK';
-	$XML::LibXML::Augment::VERSION   = '0.001';
+	$XML::LibXML::Augment::VERSION   = '0.002';
 	
 	no strict 'refs';
 	no warnings 'once';
 	
-	my @_CLASSES = qw/Node Document DocumentFragment Element Attr
-		Text CDATASection Comment Dtd PI NodeList/;
-	
+	my @_CLASSES = qw/
+		Node Document DocumentFragment Element Attr
+		Text CDATASection Comment Dtd PI NodeList
+	/;
+
+	# It would be nice to not need to include this block,
+	# but it's currently necessary for Dist::Inkt and the
+	# PAUSE indexer...
+	{
+		package XML::LibXML::Augment::Node;
+		package XML::LibXML::Augment::Document;
+		package XML::LibXML::Augment::DocumentFragment;
+		package XML::LibXML::Augment::Element;
+		package XML::LibXML::Augment::Attr;
+		package XML::LibXML::Augment::Text;
+		package XML::LibXML::Augment::CDATASection;
+		package XML::LibXML::Augment::Comment;
+		package XML::LibXML::Augment::Dtd;
+		package XML::LibXML::Augment::PI;
+		package XML::LibXML::Augment::NodeList;
+	}
+
 	foreach my $class (@_CLASSES)
 	{
-		if ($class ~~ [qw/Comment CDATASection/])
+		if (match $class, [qw/Comment CDATASection/])
 		{
 			# Comment and CDATASection inherit from Text
 			push @{"XML::LibXML::Augment::${class}::ISA"},
@@ -91,7 +113,7 @@ sub import
 	}
 	
 	Carp::croak("-type argument must be 'Element', 'Attr' or 'Document'")
-		unless $type ~~ [qw/Attr Document Element/];
+		unless match $type, [qw/Attr Document Element/];
 	
 	foreach my $n (@$names)
 	{
@@ -142,7 +164,7 @@ sub ideal_class_for_object
 		(XML_DOCUMENT_NODE)       => 'Document',
 		(XML_DOCUMENT_FRAG_NODE)  => 'DocumentFragment',
 		(XML_DTD_NODE)            => 'Dtd',
-		}->{$nodeType};
+	}->{$nodeType};
 	
 	# This is where we get smart
 	if ($ideal eq 'Element' or $ideal eq 'Attr' or $ideal eq 'Document')
@@ -257,6 +279,10 @@ sub upgrade
 __PACKAGE__
 __END__
 
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
 XML::LibXML::Augment - extend XML::LibXML::{Attr,Element,Document} on a per-namespace/element basis
@@ -268,6 +294,7 @@ XML::LibXML::Augment - extend XML::LibXML::{Attr,Element,Document} on a per-name
    
    use 5.010;
    use strict;
+   use warnings;
    use XML::LibXML::Augment -names => ['{http://example.com/}bar'];
    
    sub tellJoke
@@ -283,6 +310,7 @@ XML::LibXML::Augment - extend XML::LibXML::{Attr,Element,Document} on a per-name
    
    use 5.010;
    use strict;
+   use warnings;
    use XML::LibXML::Augment;
    
    my $doc = XML::LibXML->load_xml(string => <<'XML');
@@ -513,7 +541,7 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENCE
 
-This software is copyright (c) 2012 by Toby Inkster.
+This software is copyright (c) 2012, 2014 by Toby Inkster.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
