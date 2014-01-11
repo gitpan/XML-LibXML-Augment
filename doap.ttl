@@ -1,6 +1,7 @@
 @prefix dc:    <http://purl.org/dc/terms/> .
 @prefix doap:  <http://usefulinc.com/ns/doap#> .
 @prefix doap-changeset: <http://ontologi.es/doap-changeset#> .
+@prefix doap-deps: <http://ontologi.es/doap-deps#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
@@ -10,20 +11,8 @@
 
 <http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/project>
 	a                    doap:Project;
-	doap-changeset:runtime-requirement [
-		doap-changeset:on "Perl 5.008"^^doap-changeset:CpanId;
-	], [
-		doap-changeset:on "Class::Inspector"^^doap-changeset:CpanId;
-	], [
-		doap-changeset:on "Module::Runtime"^^doap-changeset:CpanId;
-	], [
-		doap-changeset:on "XML::LibXML 1.95"^^doap-changeset:CpanId;
-	], [
-		doap-changeset:on "match::simple"^^doap-changeset:CpanId;
-	];
-	doap-changeset:test-requirement [
-		doap-changeset:on "Test::More 0.61"^^doap-changeset:CpanId;
-	];
+	doap-deps:runtime-requirement [ doap-deps:on "perl 5.008"^^doap-deps:CpanId ], [ doap-deps:on "Class::Inspector"^^doap-deps:CpanId ], [ doap-deps:on "Module::Runtime"^^doap-deps:CpanId ], [ doap-deps:on "XML::LibXML 1.95"^^doap-deps:CpanId ], [ doap-deps:on "match::simple"^^doap-deps:CpanId ];
+	doap-deps:test-requirement [ doap-deps:on "Test::More 0.61"^^doap-deps:CpanId ];
 	doap:bug-database    <http://rt.cpan.org/Dist/Display.html?Queue=XML-LibXML-Augment>;
 	doap:created         "2012-02-22"^^xsd:date;
 	doap:developer       _:B1;
@@ -33,7 +22,7 @@
 	doap:maintainer      _:B1;
 	doap:name            "XML-LibXML-Augment";
 	doap:programming-language "Perl";
-	doap:release         <http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/v_0-001>, <http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/v_0-002>;
+	doap:release         <http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/v_0-001>, <http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/v_0-002>, <http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/v_0-003>;
 	doap:respository     [
 		a doap:GitRepository;
 		doap:browse <https://github.com/tobyink/p5-xml-libxml-augment>;
@@ -70,6 +59,18 @@
 	];
 	doap:file-release    <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/XML-LibXML-Augment-0.002.tar.gz>;
 	doap:revision        "0.002"^^xsd:string.
+
+<http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/v_0-003>
+	a                    doap:Version;
+	dc:issued            "2014-01-11"^^xsd:date;
+	doap-changeset:changeset [
+		doap-changeset:item [
+			a doap-changeset:Bugfix, doap-changeset:Packaging;
+			rdfs:label "Fix deps";
+		];
+	];
+	doap:file-release    <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/XML-LibXML-Augment-0.003.tar.gz>;
+	doap:revision        "0.003"^^xsd:string.
 
 _:B1
 	a                    foaf:Person;

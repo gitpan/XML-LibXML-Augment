@@ -16,9 +16,21 @@ my $meta = {
                       },
   "name"           => "XML-LibXML-Augment",
   "no_index"       => { directory => ["eg", "examples", "inc", "t", "xt"] },
-  "prereqs"        => { configure => { requires => { "ExtUtils::MakeMaker" => 6.17 } } },
+  "prereqs"        => {
+                        configure => { requires => { "ExtUtils::MakeMaker" => 6.17 } },
+                        runtime => {
+                          requires => {
+                            "Class::Inspector" => 0,
+                            "match::simple" => 0,
+                            "Module::Runtime" => 0,
+                            "perl" => 5.008,
+                            "XML::LibXML" => 1.95,
+                          },
+                        },
+                        test => { requires => { "Test::More" => 0.61 } },
+                      },
   "provides"       => {
-                        "XML::LibXML::Augment"                   => { file => "lib/XML/LibXML/Augment.pm", version => 0.002 },
+                        "XML::LibXML::Augment"                   => { file => "lib/XML/LibXML/Augment.pm", version => 0.003 },
                         "XML::LibXML::Augment::Attr"             => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
                         "XML::LibXML::Augment::CDATASection"     => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
                         "XML::LibXML::Augment::Comment"          => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
@@ -40,7 +52,7 @@ my $meta = {
                         license      => ["http://dev.perl.org/licenses/"],
                         X_identifier => "http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/project",
                       },
-  "version"        => 0.002,
+  "version"        => 0.003,
 };
 
 my %dynamic_config;
