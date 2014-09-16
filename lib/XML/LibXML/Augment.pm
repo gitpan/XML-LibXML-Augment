@@ -16,7 +16,7 @@ my %Delegates;
 BEGIN
 {
 	$XML::LibXML::Augment::AUTHORITY = 'cpan:TOBYINK';
-	$XML::LibXML::Augment::VERSION   = '0.003';
+	$XML::LibXML::Augment::VERSION   = '0.004';
 	
 	no strict 'refs';
 	no warnings 'once';
@@ -63,9 +63,9 @@ BEGIN
 			"XML::LibXML::${class}";
 
 		# $AUTHORITY and $VERSION
-		${"XML::LibXML::Augment::${class}::AUTHORITY"} = 
+		${"XML::LibXML::Augment::${class}::AUTHORITY"} =
 			$XML::LibXML::Augment::AUTHORITY;
-		${"XML::LibXML::Augment::${class}::VERSION"} = 
+		${"XML::LibXML::Augment::${class}::VERSION"} =
 			$XML::LibXML::Augment::VERSION;
 		
 		# Trick "use".

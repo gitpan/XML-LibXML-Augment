@@ -7,7 +7,7 @@ my $meta = {
   "abstract"       => "extend XML::LibXML::{Attr,Element,Document} on a per-namespace/element basis",
   "author"         => ["Toby Inkster <tobyink\@cpan.org>"],
   "dynamic_config" => 0,
-  "generated_by"   => "Dist::Inkt::Profile::TOBYINK version 0.013, CPAN::Meta::Converter version 2.120921",
+  "generated_by"   => "Dist::Inkt::Profile::TOBYINK version 0.021, CPAN::Meta::Converter version 2.140640",
   "keywords"       => [],
   "license"        => ["perl_5"],
   "meta-spec"      => {
@@ -30,18 +30,18 @@ my $meta = {
                         test => { requires => { "Test::More" => 0.61 } },
                       },
   "provides"       => {
-                        "XML::LibXML::Augment"                   => { file => "lib/XML/LibXML/Augment.pm", version => 0.003 },
-                        "XML::LibXML::Augment::Attr"             => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::CDATASection"     => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::Comment"          => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::Document"         => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::DocumentFragment" => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::Dtd"              => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::Element"          => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::Node"             => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::NodeList"         => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::PI"               => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
-                        "XML::LibXML::Augment::Text"             => { file => "lib/XML/LibXML/Augment.pm", version => 0 },
+                        "XML::LibXML::Augment"                   => { file => "lib/XML/LibXML/Augment.pm", version => 0.004 },
+                        "XML::LibXML::Augment::Attr"             => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::CDATASection"     => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::Comment"          => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::Document"         => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::DocumentFragment" => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::Dtd"              => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::Element"          => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::Node"             => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::NodeList"         => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::PI"               => { file => "lib/XML/LibXML/Augment.pm" },
+                        "XML::LibXML::Augment::Text"             => { file => "lib/XML/LibXML/Augment.pm" },
                       },
   "release_status" => "stable",
   "resources"      => {
@@ -50,9 +50,14 @@ my $meta = {
                                         },
                         homepage     => "https://metacpan.org/release/XML-LibXML-Augment",
                         license      => ["http://dev.perl.org/licenses/"],
-                        X_identifier => "http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/project",
+                        repository   => {
+                                          type => "git",
+                                          url  => "git://github.com/tobyink/p5-xml-libxml-augment.git",
+                                          web  => "https://github.com/tobyink/p5-xml-libxml-augment",
+                                        },
+                        x_identifier => "http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/project",
                       },
-  "version"        => 0.003,
+  "version"        => 0.004,
 };
 
 my %dynamic_config;
@@ -64,6 +69,7 @@ my %WriteMakefileArgs = (
 	VERSION    => $meta->{version},
 	EXE_FILES  => [ map $_->{file}, values %{ $meta->{x_provides_scripts} || {} } ],
 	NAME       => do { my $n = $meta->{name}; $n =~ s/-/::/g; $n },
+	test       => { TESTS => "t/*.t" },
 	%dynamic_config,
 );
 

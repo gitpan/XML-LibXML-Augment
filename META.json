@@ -4,7 +4,7 @@
       "Toby Inkster <tobyink@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Inkt::Profile::TOBYINK version 0.013, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Inkt::Profile::TOBYINK version 0.021, CPAN::Meta::Converter version 2.140640",
    "keywords" : [],
    "license" : [
       "perl_5"
@@ -48,7 +48,7 @@
    "provides" : {
       "XML::LibXML::Augment" : {
          "file" : "lib/XML/LibXML/Augment.pm",
-         "version" : "0.003"
+         "version" : "0.004"
       },
       "XML::LibXML::Augment::Attr" : {
          "file" : "lib/XML/LibXML/Augment.pm"
@@ -86,14 +86,19 @@
    },
    "release_status" : "stable",
    "resources" : {
-      "X_identifier" : "http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/project",
       "bugtracker" : {
          "web" : "http://rt.cpan.org/Dist/Display.html?Queue=XML-LibXML-Augment"
       },
       "homepage" : "https://metacpan.org/release/XML-LibXML-Augment",
       "license" : [
          "http://dev.perl.org/licenses/"
-      ]
+      ],
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tobyink/p5-xml-libxml-augment.git",
+         "web" : "https://github.com/tobyink/p5-xml-libxml-augment"
+      },
+      "x_identifier" : "http://purl.org/NET/cpan-uri/dist/XML-LibXML-Augment/project"
    },
-   "version" : "0.003"
+   "version" : "0.004"
 }
